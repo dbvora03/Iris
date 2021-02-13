@@ -6,11 +6,16 @@ import React, {useEffect, createContext, useReducer, useContext} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 //Bootstrap imports
-import { Button } from 'react-bootstrap';
+
 
 //Component imports
 import LandingPage from './Components/LandingPage/landing'
+import Formboi from './Components/Formboi/Formboi'
+import Results from './Components/Results/Results'
+import Navvy from './Components/Nav/navbar'
+
 
 const Routing = () => {
 
@@ -20,6 +25,8 @@ const Routing = () => {
   return (
     <Switch>
       <Route exact path="/home"><LandingPage/></Route>
+      <Route exact path="/form"><Formboi/></Route>
+      <Route exact path="/results"><Results/></Route>
     </Switch>
   )
 }
@@ -27,11 +34,10 @@ const Routing = () => {
 
 function App() {
 
-
-
   return (
 
       <BrowserRouter>
+      <Navvy></Navvy>
         <Routing />
       </BrowserRouter>
 
