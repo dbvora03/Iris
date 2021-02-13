@@ -1,0 +1,17 @@
+
+
+Ideas:
+- Help small businesses grow
+- Target market locator
+- 
+
+
+Users functions;
+
+-| Target market calculator
+---| Where to place ads
+-----| Income, Age, occupation, location
+
+
+-| When to market
+-| 
