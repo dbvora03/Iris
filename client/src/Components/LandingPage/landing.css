@@ -1,0 +1,14 @@
+#main {
+    background-image: url('./cool-background2.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+#homecont {
+    margin-top: 20vh;
+}
+
+#homecard {
+    margin-bottom: 0vh;
+}
