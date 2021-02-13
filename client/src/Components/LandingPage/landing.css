@@ -2,13 +2,45 @@
     background-image: url('./cool-background2.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 100vh;
+    min-height: 90vh;
 }
 
 #homecont {
-    margin-top: 20vh;
+    margin-top: 0vh;
 }
 
 #homecard {
+    margin-top: 0vh;
     margin-bottom: 0vh;
+    background-color: #fbfbfb;
+    opacity: .9 
+}
+
+.infopart {
+    margin-top: 5vh;
+    background-color: white;
+    height: 50vh;
+}
+
+.demImages{
+    margin-top: 15%;
+    margin-bottom: 5%;
+    width: 25px;
+    -webkit-animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
+}
+@-webkit-keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+@keyframes mover {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+.thatrow {
+    margin-top: 30px;
+}
+.darow {
+    margin-top: 80px;
 }
