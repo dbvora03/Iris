@@ -3,14 +3,15 @@
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 90vh;
+    margin-top:0vh;
 }
 
 #homecont {
-    margin-top: 0vh;
+    margin-top: 10vh;
 }
 
 #homecard {
-    margin-top: 10vh;
+    margin-top: 00vh;
     margin-bottom: 0vh;
     background-color: #fbfbfb;
     opacity: .9 
