@@ -10,7 +10,7 @@
 }
 
 #homecard {
-    margin-top: 0vh;
+    margin-top: 10vh;
     margin-bottom: 0vh;
     background-color: #fbfbfb;
     opacity: .9 
@@ -18,6 +18,13 @@
 
 .infopart {
     margin-top: 5vh;
+    
+    
+    
+}
+
+.infopart {
+    margin-top: 50vh;
     background-color: white;
     height: 50vh;
 }

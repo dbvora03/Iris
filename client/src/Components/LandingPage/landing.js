@@ -22,7 +22,6 @@ const LandingPage = () => {
 
             
             </div>
-        </div>
             
         <div className="infopart">
             <div className="container ">
@@ -74,6 +73,13 @@ const LandingPage = () => {
                 </div>
             </div>
         </div>
+
+           
+        </div>
+            
+                         
+
+
         </div>
 
            
