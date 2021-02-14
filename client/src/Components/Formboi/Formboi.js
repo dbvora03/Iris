@@ -16,6 +16,9 @@ const FormBoi = () => {
     const [revenue, setRevenue] = useState("")
     const [address, setAddress] = useState("")
 
+    const [agepredic, setAgePredic] = useState("")
+    const [incomePredic, setIncomePredic] = useState("")
+
     function handleChange(event){
         setBusinessType(event.target.value)
       }
@@ -28,14 +31,40 @@ const FormBoi = () => {
         setAge(event.target.value)
     }
 
-    const PostData = () => {
+    useEffect(()=> {
 
+
+
+    }, [agepredic, incomePredic])
+
+    const PredictData = () => {
+
+        fetch("/datapredict", {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                businessType: businessType,
+            })
+
+        }).then(res=> res.json()).then(data=> {
+            if(data.error) {
+                M.toast({html: "Enter a valid business type",classes:"#c62828 red darken-3"})
+            } else {
+
+                agepredic = data.body.age
+                incomePredic = data.body.income
+            }
+        })
+    }
+
+    const PostData = () => {
         if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
-            M.toast({html: "niga",classes:"#c62828 red darken-3"})
+            M.toast({html: "Invalid Email",classes:"#c62828 red darken-3"})
             return
         }
-        
-        fetch("/data", {
+        fetch("/datasubmit", {
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
@@ -45,49 +74,52 @@ const FormBoi = () => {
                 age: age,
                 income: income,
                 rent: rent,
-                email: email
+                email: email,
+                revenue: revenue,
+                address: address
             })
         }).then(res=> res.json()).then(data=> {
 
             if(data.error) {
                 M.toast({html: data.error,classes:"#c62828 red darken-3"})
             } else {
-
-                localStorage.setItem("initialsend", JSON.stringify({
-                    "businessType": businessType,
-                    "age": age,
-                    "income": income,
-                    "rent": rent,
-                    "email":email
+                localStorage.setItem("input", JSON.stringify({
+                    businessType: businessType,
+                    age: age,
+                    income: income,
+                    rent: rent,
+                    email: email,
+                    revenue: revenue,
+                    address: address
                 }))
-
-                localStorage.setItem("confirmation", data.body)
-                ///////Reducer function here 
-
-                /////// End reducer function
-
+                localStorage.setItem("results", JSON.stringify(data.body))
                 M.toast({html:"New account added",classes:"#43a047 green darken-1"})
 
-                history.push("/confirmation")
+                history.push("/results")
             }
         })
-
     }
-
     return (
         <>
         <div class="container register mainpage">
                 <div class="row">
                     <div class="col-md-3 register-left">
-                        <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
-                        <h3>Lets get started!</h3>
-                        <p><strong>Start by filling in all the relevent information related to your business</strong></p>
-        
+                        <div className="container">
+                            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+                            <h3>Lets get started!</h3>
+                            <p><strong>Start by filling in all the relevent information related to your business</strong></p>
+
+                            <input type="submit" class="btnRegister" onClick={()=> {PostData()}} value="Submit"/>
+                        </div>
                     </div>
                     <div class="col-md-9 register-right">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <h3 class="register-heading">Fill in the information below</h3>
+                                <div className="container" style={{marginBottom:"25px"}}>
+                                <h4 class="register-heading">I'll try to predict the income and age </h4>
+
+                                <h4 class="register-heading">Enter in your business type and click on the blue button</h4>
+                                </div>
                                 <div class="row register-form">
                                     <div class="col-md-6">
                                         <div class="form-group">
@@ -134,6 +166,9 @@ const FormBoi = () => {
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+                                    <div class="form-group">
+                                            <input type="submit" class="btnRegister update" onClick={()=> {PredictData()}} value="Predict Income"/>
+                                        </div>
                                         <div class="form-group">
                                             <input value={email} onChange={(e)=>setemail(e.target.value)} type="email" class="form-control" placeholder="Your Email *" />
                                         </div>
@@ -142,10 +177,11 @@ const FormBoi = () => {
                                         </div>
    
                                         <div class="form-group">
-                                            <input value={address} onChange={(e)=>setAddress(e.target.value)} type="text" class="form-control" placeholder="Address *" value="" />
+                                            <input value={address} onChange={(e)=>setAddress(e.target.value)} type="text" className="form-control " placeholder="Address *" value="" />
                                         </div>
-                                        <input type="submit" class="btnRegister" onClick={()=> {PostData()}} value="Submit"/>
                                     </div>
+                                    {(agepredic != "" && incomePredic != "")? <p>I think the average age is <strong>{agepredic}</strong> and the average income is <strong>{incomePredic}</strong></p> : <p></p>}
+
                                 </div>
                             </div>
                         </div>

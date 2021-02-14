@@ -6,7 +6,7 @@ import './Map.css'
 const rawMap = () => {
 
     return (
-            <GoogleMap defaultZoom={10} defaultCenter={{lat:12, lng:13}}/>
+        <GoogleMap defaultZoom={10} defaultCenter={{lat:12, lng:13}}/>
     )
 }
 
