@@ -29,6 +29,7 @@ const Routing = () => {
       <Route exact path="/form"><Formboi/></Route>
       <Route exact path="/results"><Results/></Route>
       <Route exact path="/map"><Map/></Route>
+      <Route exact path="/confirmation"><Map/></Route>
     </Switch>
   )
 }
