@@ -5,6 +5,7 @@ import Map from '../Map/Map';
 import { Card } from 'react-bootstrap';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import EventNoteIcon from '@material-ui/icons/EventNote';
+import {Button} from '@material-ui/core';
 
 const Results = () => {
 
@@ -33,7 +34,13 @@ const Results = () => {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales pretium bibendum. Aliquam lacus turpis, suscipit in iaculis ac, ultricies sed nisi. Mauris nec tortor consectetur massa ultrices pellentesque. Donec fringilla eleifend erat sit amet tincidunt. Nunc volutpat eros eros, sed ornare risus malesuada quis. Fusce sit amet quam dictum, mollis elit sed, congue leo. Aenean vel lacus eu tellus porta posuere id ut diam. Curabitur tristique massa ut sodales fermentum. Sed nec pretium leo, ac maximus enim.
                         </Card.Body>
                     </Card>
+                    <br/>
                     </div>
+                    <div className="text-center">
+                    <Button variant="contained" size="large" className="buton">Send to Email</Button>
+                    <Button variant="contained" size="large" className="buton">Exit</Button>
+                    </div>
+                    
                 </div>
                 
                 <div className="col-sm-6 map">

@@ -2,17 +2,23 @@
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 #contents {
     margin-left: 2vh;
     margin-right: 0.5vh;
     margin-top: 5vh;
+    
 }
 
 .cards, .map {
     margin-top: 2vh;
     width: 100vh;
+}
+
+.buton {
+    margin-right: 2vh;
 }
 
 
