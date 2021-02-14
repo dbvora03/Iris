@@ -2,6 +2,7 @@ body {
     background-image: url('./cool-background2.svg');
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 #homecont {
@@ -10,7 +11,6 @@ body {
 
 #homecard {
     background-color: #fbfbfb;
-    opacity: .9;
 }
 
 .infopart {

@@ -6,6 +6,7 @@
 
 .mainpage{
     background: -webkit-linear-gradient(left, transparent, transparent) !important ;
+    height: 100vh;
 
 }
 .register-left{
