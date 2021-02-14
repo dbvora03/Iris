@@ -13,14 +13,15 @@ body {
 }
 
 .infopart {
+    margin-top: -10px;
     background-color: white;
-    height: 50vh;
+    height: 60vh;
 }
 
 .demImages{
     margin-top: 15%;
     margin-bottom: 5%;
-    width: 25px;
+    width: 60px;
     -webkit-animation: mover 2s infinite  alternate;
     animation: mover 1s infinite  alternate;
 }
@@ -40,3 +41,13 @@ body {
     margin-top: 80px;
 }
 
+.animatedFadeOutClass {
+    transition: 0.5s;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .wave {
+    margin-bottom: 0vh;
+  }

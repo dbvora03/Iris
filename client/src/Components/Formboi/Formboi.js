@@ -107,7 +107,7 @@ const FormBoi = () => {
                         <div className="container">
                             <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                             <h3>Lets get started!</h3>
-                            <p><strong>Start by filling in all the relevent information related to your business</strong></p>
+                            <p><strong>Start by filling in all the relevant information related to your business</strong></p>
 
                             <input type="submit" class="btnRegister" onClick={()=> {PostData()}} value="Submit"/>
                         </div>
@@ -115,7 +115,7 @@ const FormBoi = () => {
                     <div class="col-md-9 register-right">
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div className="container" style={{marginBottom:"25px"}}>
+                                <div className="container" style={{marginBottom:"5px"}}>
                                 <h4 class="register-heading">I'll try to predict the income and age </h4>
 
                                 <h4 class="register-heading">Enter in your business type and click on the blue button</h4>
