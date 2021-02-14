@@ -54,10 +54,23 @@ Lastly, making our entire system work was a challenge in itself. We found issues
 
 ## Accomplishments we are proud of
 
-That it works at all! We came in with a wide scope and ambitious plan, 
+That it works at all! We came in with a wide scope and ambitious plan. I'm vaguely familiar with unsupervised learning, but I certainly didn't know how to implement K-Means. I was over the moon when my data pipeline worked and K-Means gave a real result. Given that, I do feel that our K-Means model is relatively accurate for its development timeline.
+
+Our data pipeline is also surprisingly fast, getting up and running within a second, which I achieved through extensive optimization of dataframe operations, but I'm proud of how well it performs.
+
+I'm also incredibly proud of our work on the frontend, as I (the writer) am largely a backend and data developer, I was floored by how good our UI looked, and I give full credit for that to my team.
 
 ## Things we learned
-asdkasdhkaj
+Oh where to begin?
+
+* How to design a gorgeous UI
+* How to pipeline raw csv data to a useful dataframe
+* How K-Means works and how to use it
+* The fine art of model hyperparameter tuning
+* A lesson I learn every hackathon, never underestimate what you and your team can do.
 
 
 ## So whats next ?
+* Adding a more sophisticated data model, considering other factors such as pedestrian traffic, rent, crime etc.
+* Employing a more sophisticated consumer profile generation system, using more than just census data to reduce research time for users. 
+* Deployment and hosting so small businesses can use this as it was intended.
