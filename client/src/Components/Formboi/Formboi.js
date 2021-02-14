@@ -13,20 +13,39 @@ const FormBoi = () => {
     const [income, setIncome] = useState("")
     const [rent, setRent] = useState("")
     const [email, setemail] = useState("")
+    const [revenue, setRevenue] = useState("")
+    const [address, setAddress] = useState("")
 
     function handleChange(event){
         setBusinessType(event.target.value)
       }
 
+    function handleAge(event) {
+        setAge(event.target.value)
+    }
+
+    function handleIncome(event) {
+        setAge(event.target.value)
+    }
+
     const PostData = () => {
 
+        if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
+            M.toast({html: "niga",classes:"#c62828 red darken-3"})
+            return
+        }
+        
         fetch("/data", {
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                "Hello": "World"
+                businessType: businessType,
+                age: age,
+                income: income,
+                rent: rent,
+                email: email
             })
         }).then(res=> res.json()).then(data=> {
 
@@ -34,13 +53,22 @@ const FormBoi = () => {
                 M.toast({html: data.error,classes:"#c62828 red darken-3"})
             } else {
 
+                localStorage.setItem("initialsend", JSON.stringify({
+                    "businessType": businessType,
+                    "age": age,
+                    "income": income,
+                    "rent": rent,
+                    "email":email
+                }))
+
+                localStorage.setItem("confirmation", data.body)
                 ///////Reducer function here 
 
                 /////// End reducer function
 
                 M.toast({html:"New account added",classes:"#43a047 green darken-1"})
 
-                history.push("/results")
+                history.push("/confirmation")
             }
         })
 
@@ -63,8 +91,8 @@ const FormBoi = () => {
                                 <div class="row register-form">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <select class="form-control">
-                                                <option class="hidden"  selected disabled>Target market age group</option>
+                                            <select onChange={handleChange} class="form-control">
+                                                <option class="hidden"  selected disabled>Business type</option>
                                                 <option value={"Grocery"}>Grocery</option>
                                                 <option value={"Restaurant"}>Restaurant</option>
                                                 <option value={"Household Help (Cleaning, Lawn Work etc.)"}>Household Help (Cleaning, Lawn Work etc.)</option>
@@ -82,10 +110,24 @@ const FormBoi = () => {
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input value={age} onChange={(e)=>setAge(e.target.value)} type="number" class="form-control" placeholder="Target market age *"  max="100" />
+                                            <select onChange={handleAge} class="form-control">
+                                                    <option class="hidden"  selected disabled>Target market age group</option>
+                                                    <option value={"Less than 30 years"}>Less than 30 years</option>
+                                                    <option value={"30 to 39 years"}>30 to 39 years</option>
+                                                    <option value={"40 to 54 years"}>40 to 54 years</option>
+                                                    <option value={"55 to 64 years"}>55 to 64 years</option>
+                                                    <option value={"65 years and over"}>65 years and over</option>
+                                            </select>
                                         </div>
                                         <div class="form-group">
-                                            <input value={income} onChange={(e)=>setIncome(e.target.value)} type="number" class="form-control" placeholder="Target market average income *" />
+                                            <select onChange={handleIncome} class="form-control">
+                                                <option class="hidden"  selected disabled>Target market Average Income</option>
+                                                <option value={"25800 or less"}> $25,800 or less</option>
+                                                <option value={"25801 to 45900"}>$25,801 to $45,900</option>
+                                                <option value={"45901 to 70500"}>$45,901 to $70,500</option>
+                                                <option value={"70501 to 108800"}>$70,501 to $108,800</option>
+                                                <option value={"108800+"}>$108,800+</option>
+                                            </select>                                        
                                         </div>
                                         <div class="form-group">
                                             <input value={rent} onChange={(e)=>setRent(e.target.value)} type="number" class="form-control" placeholder="Max rent cost *" />
@@ -93,14 +135,14 @@ const FormBoi = () => {
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input value={email} onChange={(e)=>setemail(e.target.value)} type="email" class="form-control" placeholder="Your Email *" value="" />
+                                            <input value={email} onChange={(e)=>setemail(e.target.value)} type="email" class="form-control" placeholder="Your Email *" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />
+                                            <input  value={revenue} onChange={(e)=>setRevenue(e.target.value)} type="number" class="form-control" placeholder="Annual revenue *" />
                                         </div>
    
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
+                                            <input value={address} onChange={(e)=>setAddress(e.target.value)} type="text" class="form-control" placeholder="Address *" value="" />
                                         </div>
                                         <input type="submit" class="btnRegister" onClick={()=> {PostData()}} value="Submit"/>
                                     </div>

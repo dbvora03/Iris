@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import logo from './default2.svg'
+import {Link, useHistory} from 'react-router-dom'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    textDecoration: false
   },
 }));
 
@@ -33,6 +36,8 @@ const NavBar = props => {
           </Typography> 
           <Button color="inherit">Menu Item</Button>
           <Button color="inherit">Menu Item 2</Button>
+          <Typography variant="h4" style={{textDecoration: "none"}} className={classes.title}><Link to="/home">IRIS</Link></Typography>
+
         </Toolbar>
       </AppBar>
     </div>
