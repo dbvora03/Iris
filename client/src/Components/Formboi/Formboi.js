@@ -9,6 +9,10 @@ const FormBoi = () => {
     const history = useHistory()
 
     const [businessType, setBusinessType] = useState("")
+    const [age, setAge] = useState("")
+    const [income, setIncome] = useState("")
+    const [rent, setRent] = useState("")
+    const [email, setemail] = useState("")
 
     function handleChange(event){
         setBusinessType(event.target.value)
@@ -49,7 +53,7 @@ const FormBoi = () => {
                     <div class="col-md-3 register-left">
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                         <h3>Lets get started!</h3>
-                        <p>Start by filling in all the relevent information related to your business</p>
+                        <p><strong>Start by filling in all the relevent information related to your business</strong></p>
         
                     </div>
                     <div class="col-md-9 register-right">
@@ -78,30 +82,23 @@ const FormBoi = () => {
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Last Name *" value="" />
+                                            <input value={age} onChange={(e)=>setAge(e.target.value)} type="number" class="form-control" placeholder="Target market age *"  max="100" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password *" value="" />
+                                            <input value={income} onChange={(e)=>setIncome(e.target.value)} type="number" class="form-control" placeholder="Target market average income *" />
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control"  placeholder="Confirm Password *" value="" />
+                                            <input value={rent} onChange={(e)=>setRent(e.target.value)} type="number" class="form-control" placeholder="Max rent cost *" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Your Email *" value="" />
+                                            <input value={email} onChange={(e)=>setemail(e.target.value)} type="email" class="form-control" placeholder="Your Email *" value="" />
                                         </div>
                                         <div class="form-group">
                                             <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone *" value="" />
                                         </div>
-                                        <div class="form-group">
-                                            <select class="form-control">
-                                                <option class="hidden"  selected disabled>What Category is your business?</option>
-                                                <option>What is your Birthdate?</option>
-                                                <option>What is Your old Phone Number</option>
-                                                <option>What is your Pet Name?</option>
-                                            </select>
-                                        </div>
+   
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Enter Your Answer *" value="" />
                                         </div>
