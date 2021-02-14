@@ -5,6 +5,7 @@ import pandas as pd
 
 df_spending_age = pd.read_csv("./data/spending_age.csv")
 df_spending_income = pd.read_csv("./data/spending_income.csv")
+
 census_bus_categories = {
     "Grocery": "Food purchased from stores",
     "Restaurant": "Food purchased from restaurants",
@@ -23,11 +24,11 @@ census_bus_categories = {
 }
 
 age_mapping = {
-    "Less than 30 years": list(range(0, 29)),
-    "30 to 39 years": list(range(30, 39)),
-    "40 to 54 years": list(range(40, 54)),
-    "55 to 64 years": list(range(55, 64)),
-    "65 years and over": list(range(65, 120))
+    "Less than 30 years": "0 to 30",
+    "30 to 39 years": "30 to 39",
+    "40 to 54 years": "40 to 54",
+    "55 to 64 years": "55 to 64",
+    "65 years and over": "65+"
 }
 
 income_mapping = {
