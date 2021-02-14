@@ -8,6 +8,11 @@ const FormBoi = () => {
 
     const history = useHistory()
 
+    const [businessType, setBusinessType] = useState("")
+
+    function handleChange(event){
+        setBusinessType(event.target.value)
+      }
 
     const PostData = () => {
 
@@ -32,9 +37,7 @@ const FormBoi = () => {
                 M.toast({html:"New account added",classes:"#43a047 green darken-1"})
 
                 history.push("/results")
-
             }
-
         })
 
     }
@@ -58,9 +61,20 @@ const FormBoi = () => {
                                         <div class="form-group">
                                             <select class="form-control">
                                                 <option class="hidden"  selected disabled>Target market age group</option>
-                                                <option>What is your Birthdate?</option>
-                                                <option>What is Your old Phone Number</option>
-                                                <option>What is your Pet Name?</option>
+                                                <option value={"Grocery"}>Grocery</option>
+                                                <option value={"Restaurant"}>Restaurant</option>
+                                                <option value={"Household Help (Cleaning, Lawn Work etc.)"}>Household Help (Cleaning, Lawn Work etc.)</option>
+                                                <option value={"Furniture"}>Furniture</option>
+                                                <option value={"Household Equipment"}>Household Equipment</option>
+                                                <option value={"Appliances"}>Appliances</option>
+                                                <option value={"Clothing"}>Clothing</option>
+                                                <option value={"Personal Care"}>Personal Care</option>
+                                                <option value={"Recreation Equipment"}>Recreation Equipment</option>
+                                                <option value={"Home Entertainment Equipment"}>Home Entertainment Equipment</option>
+                                                <option value={"Recreation Services"}>Recreation Services</option>
+                                                <option value={"Reading Materials (Bookstore)"}>Reading Materials (Bookstore)</option>
+                                                <option value={"Tobacco and Alcohol"}>Tobacco and Alcohol</option>
+                                                <option value={"Gambling"}>Gambling</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
