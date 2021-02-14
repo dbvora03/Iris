@@ -1,0 +1,18 @@
+#body {
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#contents {
+    margin-left: 2vh;
+    margin-right: 0.5vh;
+    margin-top: 5vh;
+}
+
+.cards, .map {
+    margin-top: 2vh;
+    width: 100vh;
+}
+
+

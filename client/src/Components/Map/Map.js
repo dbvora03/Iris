@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {GoogleMap, withScriptjs, withGoogleMap} from "react-google-maps"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './Map.css'
 
 const rawMap = () => {
 
@@ -19,7 +20,7 @@ const Map = () => {
             <WrappedMap 
                 googleMapURL={'https://maps.googleapis.com/maps/api/js?key=AIzaSyB1u3EQJ3fbaaBUWPC_PJV4qarJaDwGudU'} 
                 loadingElement={<div style={{height: "100%"}}></div>}
-                containerElement={<div style={{height: "100%"}}></div>}
+                containerElement={<div style={{height: "100%", marginRight:"10vh"}}></div>}
                 mapElement={<div style={{height: "100%"}}></div>}
                 />
         </div>

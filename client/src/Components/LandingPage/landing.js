@@ -3,6 +3,7 @@ import './landing.css'
 import { Card, Button, Navbar } from 'react-bootstrap'
 import people from './people.gif'
 import logo from './default.png'
+import wave from './wave.svg'
 import { Link, useHistory } from 'react-router-dom'
 
 
@@ -22,8 +23,11 @@ const LandingPage = () => {
 
                         </Card.Body>
                     </Card>
+                    
                 </div>
+                <img src={wave} className="wave"/>
                 <div className="infopart">
+                    
                     <div className="container ">
                         <div classname="row darow">
                             <div className="col-md-12">

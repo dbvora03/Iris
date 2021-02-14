@@ -10,11 +10,9 @@ body {
 
 #homecard {
     background-color: #fbfbfb;
-    opacity: .9;
 }
 
 .infopart {
-    margin-top: 30vh;
     background-color: white;
     height: 50vh;
 }

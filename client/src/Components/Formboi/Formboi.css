@@ -6,6 +6,7 @@
 
 .mainpage{
     background: -webkit-linear-gradient(left, transparent, transparent) !important ;
+    height: 100vh;
 
 }
 .register-left{
@@ -55,7 +56,7 @@
     margin-top: 15%;
 }
 .btnRegister{
-    float: right;
+    float: center;
     margin-top: 10%;
     border: none;
     border-radius: 1.5rem;

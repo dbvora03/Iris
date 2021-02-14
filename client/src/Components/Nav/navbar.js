@@ -27,12 +27,12 @@ const NavBar = props => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{background:'-webkit-linear-gradient(left, #0922d0, #34bde9)'}}>
+      <AppBar position="static" style={{background:'-webkit-linear-gradient(left, #0922d0, #34bde9)', opacity:'0.6'}}>
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            <img src={logo} style={{ height: '30px' }}/>
+            <Link to="/home"><img src={logo} style={{ height: '30px' }}/></Link>  
           </Typography> 
           <Button color="inherit">Menu Item</Button>
           <Button color="inherit">Menu Item 2</Button>
