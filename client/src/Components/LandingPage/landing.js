@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './landing.css'
 import { Card, Button, Navbar } from 'react-bootstrap'
 import people from './people.gif'
+import logo from './default.png'
 import { Link, useHistory } from 'react-router-dom'
 
 
@@ -13,8 +14,8 @@ const LandingPage = () => {
                     <Card className="text-center rounded-top" id="homecard">
                         <Card.Body>
                             <img src={people} style={{ height: '400px' }} className="float-left" />
-                            <Card.Title><h1>DaBabyThon</h1></Card.Title>
-                            <Card.Text>I don't know what to write here.</Card.Text>
+                            <Card.Title><img src={logo} style={{ height: '130px' }}/></Card.Title>
+                            <Card.Text>A virtual assistant.</Card.Text>
                             <Button href="/form" variant="primary">Continue</Button>
                         </Card.Body>
                     </Card>
