@@ -1,12 +1,12 @@
-from flask import Flask, redirect, url_for, request, jsonify
+from flask import Flask, request, jsonify
 from sklearn.cluster import KMeans
-import psycopg2
 import pandas as pd
 import numpy as np
 
 df_spending_age = pd.read_csv("./data/spending_age.csv")
 df_spending_income = pd.read_csv("./data/spending_income.csv")
 df_spending_property = pd.read_csv("./data/property_values.csv")
+
 census_bus_categories = {
     "Grocery": "Food purchased from stores",
     "Restaurant": "Food purchased from restaurants",
