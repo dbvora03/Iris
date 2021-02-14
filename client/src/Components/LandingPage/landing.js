@@ -3,6 +3,7 @@ import './landing.css'
 import { Card, Button, Navbar } from 'react-bootstrap'
 import people from './people.gif'
 import logo from './default.png'
+import wave from './wave.svg'
 import { Link, useHistory } from 'react-router-dom'
 
 
@@ -15,12 +16,15 @@ const LandingPage = () => {
                         <Card.Body>
                             <img src={people} style={{ height: '400px' }} className="float-left" />
                             <Card.Title><img src={logo} style={{ height: '130px' }}/></Card.Title>
-                            <Card.Text>A virtual assistant.</Card.Text>
+                            <Card.Text>Iris is a virtual assistant that Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sodales pretium bibendum. Aliquam lacus turpis, suscipit in iaculis ac, ultricies sed nisi. Mauris nec tortor consectetur massa ultrices pellentesque. Donec fringilla eleifend erat sit. <br/>Press continue to get started. 🚀 📈 </Card.Text>
                             <Button href="/form" variant="primary">Continue</Button>
                         </Card.Body>
                     </Card>
+                    
                 </div>
+                <img src={wave} className="wave"/>
                 <div className="infopart">
+                    
                     <div className="container ">
                         <div classname="row darow">
                             <div className="col-md-12">

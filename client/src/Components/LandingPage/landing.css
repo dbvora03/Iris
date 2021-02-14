@@ -2,7 +2,6 @@ body {
     background-image: url('./cool-background2.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
 }
 
 #homecont {
@@ -41,3 +40,18 @@ body {
 .darow {
     margin-top: 80px;
 }
+
+.animatedFadeOutClass {
+    transition: 0.5s;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .wave {
+    margin-bottom: 0vh;
+  }
+
+  .infopart {
+      margin-top: 0vh;
+  }

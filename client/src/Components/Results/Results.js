@@ -15,7 +15,7 @@ const Results = () => {
                     <div className="row">
                     <Card className="cards shadow-lg">
                         <Card.Body>
-                            <h4><MonetizationOnIcon/> Income</h4>
+                            <h4><MonetizationOnIcon style={{color: "green"}}/> Income</h4>
                             
                         </Card.Body>
                     </Card>
@@ -23,7 +23,7 @@ const Results = () => {
                     <div className="row">
                     <Card className="cards shadow-lg">
                         <Card.Body>
-                            <h4><EventNoteIcon/> Age</h4>
+                            <h4><EventNoteIcon style={{color: "orange"}}/> Age</h4>
                         </Card.Body>
                     </Card>
                     </div>
