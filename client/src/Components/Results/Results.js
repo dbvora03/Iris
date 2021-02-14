@@ -5,7 +5,7 @@ import Map from '../Map/Map';
 import { Card } from 'react-bootstrap';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import EventNoteIcon from '@material-ui/icons/EventNote';
-import {Button} from '@material-ui/core';
+import {Button} from 'react-bootstrap'
 
 const Results = () => {
 
@@ -37,8 +37,8 @@ const Results = () => {
                     <br/>
                     </div>
                     <div className="text-center">
-                    <Button variant="contained" size="large" className="buton">Send to Email</Button>
-                    <Button variant="contained" size="large" className="buton">Exit</Button>
+                    <Button className="buton btn-light">Send to Email</Button>
+                    <Button className="buton btn-light">Exit</Button>
                     </div>
                     
                 </div>

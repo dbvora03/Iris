@@ -34,8 +34,7 @@ const NavBar = props => {
           <Typography variant="h6" className={classes.title}>
             <Link to="/home"><img src={logo} style={{ height: '30px' }}/></Link>  
           </Typography> 
-          <Button color="inherit">Menu Item</Button>
-          <Button color="inherit">Menu Item 2</Button>
+          <Button color="inherit" href="https://github.com/dbvora03/Iris">View on GitHub</Button>
         </Toolbar>
       </AppBar>
     </div>
