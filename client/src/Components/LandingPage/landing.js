@@ -17,7 +17,7 @@ const LandingPage = () => {
                             <img src={people} style={{ height: '400px' }} className="float-left" />
                             <Card.Title><img src={logo} style={{ height: '130px', marginTop:"50px" }}/></Card.Title>
                             <Card.Text><h6>Hi I'm Iris! 👋</h6></Card.Text>
-                            <Card.Text><h6>An AI powered virtual assistant that provides local Calgary businesses the intel needed to conduct business better. 📈 🚀</h6></Card.Text>
+                            <Card.Text><h6>An AI powered virtual assistant that provides local Calgary businesses the intelligence needed to conduct business better. 📈 🚀</h6></Card.Text>
                             <Button href="/form" variant="primary">Get Started</Button>
                         </Card.Body>
                     </Card>

@@ -1,5 +1,5 @@
 //General imports
-import {BrowserRouter, Route, Switch, useHistory} from 'react-router-dom'
+import {BrowserRouter, Route, Switch, useHistory, Redirect} from 'react-router-dom'
 import React, {useEffect, createContext, useReducer, useContext} from 'react';
 
 //CSS imports
@@ -27,9 +27,6 @@ const Routing = () => {
     <Switch>
       <Route exact path="/home"><LandingPage/></Route>
       <Route exact path="/form"><Formboi/></Route>
-      <Route exact path="/results"><Results/></Route>
-      <Route exact path="/map"><Map/></Route>
-      <Route exact path="/confirmation"><Confirmation/></Route>
     </Switch>
   )
 }
@@ -40,10 +37,8 @@ function App() {
   return (
 
       <BrowserRouter>
-      <Navvy></Navvy>
         <Routing />
       </BrowserRouter>
-
   );
 }
 

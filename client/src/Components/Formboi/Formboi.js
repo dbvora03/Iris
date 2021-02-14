@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
+import {Table} from 'react-bootstrap';
 import './Formboi.css'
 import M from 'materialize-css'
+import numeral from 'numeral';
 
 
 const FormBoi = () => {
@@ -15,9 +17,27 @@ const FormBoi = () => {
     const [email, setemail] = useState("")
     const [revenue, setRevenue] = useState("")
     const [address, setAddress] = useState("")
+    const [communities, setCommunities] = useState({})
 
-    const [agepredic, setAgePredic] = useState("")
-    const [incomePredic, setIncomePredic] = useState("")
+    var [agepredic, setAgePredic] = useState("hidden")
+    var [incomePredic, setIncomePredic] = useState("hidden")
+
+
+    const AGE_MAP = {
+        "Less than 30": 20,
+        "30 to 39": 35,
+        "40 to 54": 50,
+        "55 to 64": 60,
+        "65+": 70
+    }
+
+    const INCOME_MAP = {
+        "25800 or less": 20000,
+        "25801 to 45900": 35000,
+        "45901 to 70500": 58000,
+        "70501 to 108800": 90000,
+        "108800+": 150000
+    }
 
     function handleChange(event){
         setBusinessType(event.target.value)
@@ -53,54 +73,35 @@ const FormBoi = () => {
                 M.toast({html: "Enter a valid business type",classes:"#c62828 red darken-3"})
             } else {
 
-                agepredic = data.body.age
-                incomePredic = data.body.income
+                setAgePredic(data.age)
+                setIncomePredic(data.income)
+                document.getElementById("age").value = data.age
+                document.getElementById("income").value = data.income
             }
         })
     }
 
     const PostData = () => {
-        if(!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
-            M.toast({html: "Invalid Email",classes:"#c62828 red darken-3"})
-            return
-        }
-        fetch("/datasubmit", {
+        fetch("https://calgaryhacks-304803.wl.r.appspot.com/get_cluster", {
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                businessType: businessType,
-                age: age,
-                income: income,
-                rent: rent,
-                email: email,
-                revenue: revenue,
-                address: address
+                avg_age: AGE_MAP[agepredic],
+                avg_income: INCOME_MAP[incomePredic]
             })
         }).then(res=> res.json()).then(data=> {
 
             if(data.error) {
                 M.toast({html: data.error,classes:"#c62828 red darken-3"})
             } else {
-                localStorage.setItem("input", JSON.stringify({
-                    businessType: businessType,
-                    age: age,
-                    income: income,
-                    rent: rent,
-                    email: email,
-                    revenue: revenue,
-                    address: address
-                }))
-                localStorage.setItem("results", JSON.stringify(data.body))
-                M.toast({html:"New account added",classes:"#43a047 green darken-1"})
-
-                history.push("/results")
+                setCommunities(data)
             }
         })
     }
     return (
-        <>
+        
         <div class="container register mainpage">
                 <div class="row">
                     <div class="col-md-3 register-left">
@@ -142,43 +143,23 @@ const FormBoi = () => {
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <select onChange={handleAge} class="form-control">
+                                            <select onChange={handleAge} id="age" class="form-control">
                                                     <option class="hidden"  selected disabled>Target market age group</option>
-                                                    <option value={"Less than 30 years"}>Less than 30 years</option>
-                                                    <option value={"30 to 39 years"}>30 to 39 years</option>
-                                                    <option value={"40 to 54 years"}>40 to 54 years</option>
-                                                    <option value={"55 to 64 years"}>55 to 64 years</option>
-                                                    <option value={"65 years and over"}>65 years and over</option>
+                                                    <option value={"Less than 30"}>Less than 30 years</option>
+                                                    <option value={"30 to 39"}>30 to 39 years</option>
+                                                    <option value={"40 to 54"}>40 to 54 years</option>
+                                                    <option value={"55 to 64"}>55 to 64 years</option>
+                                                    <option value={"65+"}>65 years and over</option>
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <select onChange={handleIncome} class="form-control">
+                                            <select onChange={handleIncome} class="form-control" id="income">
                                                 <option class="hidden"  selected disabled>Target market Average Income</option>
-                                                <option value={"25800 or less"}> $25,800 or less</option>
-                                                <option value={"25801 to 45900"}>$25,801 to $45,900</option>
-                                                <option value={"45901 to 70500"}>$45,901 to $70,500</option>
-                                                <option value={"70501 to 108800"}>$70,501 to $108,800</option>
+                                                striped bordered hover         <option value={"70501 to 108800"}>$70,501 to $108,800</option>
                                                 <option value={"108800+"}>$108,800+</option>
                                             </select>                                        
                                         </div>
-                                        <div class="form-group">
-                                            <input value={rent} onChange={(e)=>setRent(e.target.value)} type="number" class="form-control" placeholder="Max rent cost *" />
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                    <div class="form-group">
-                                            <input type="submit" class="btnRegister update" onClick={()=> {PredictData()}} value="Predict Income"/>
-                                        </div>
-                                        <div class="form-group">
-                                            <input value={email} onChange={(e)=>setemail(e.target.value)} type="email" class="form-control" placeholder="Your Email *" />
-                                        </div>
-                                        <div class="form-group">
-                                            <input  value={revenue} onChange={(e)=>setRevenue(e.target.value)} type="number" class="form-control" placeholder="Annual revenue *" />
-                                        </div>
-   
-                                        <div class="form-group">
-                                            <input value={address} onChange={(e)=>setAddress(e.target.value)} type="text" className="form-control " placeholder="Address *" value="" />
-                                        </div>
+                                        <input type="submit" class="btnRegister update" onClick={()=> {PredictData()}} value="Predict Income"/>
                                     </div>
                                     {(agepredic != "" && incomePredic != "")? <p>I think the average age is <strong>{agepredic}</strong> and the average income is <strong>{incomePredic}</strong></p> : <p></p>}
 
@@ -186,9 +167,32 @@ const FormBoi = () => {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
+                <br /><br />
+                {Object.keys(communities).length === 0 ? null : <div class="row">
+                    <div class="col-md-12">
+                    <h3 style={{color: "white"}}>The Communities You Should Operate In Are... </h3>
+                    <Table striped bordered hover variant="light">
+                                    <thead>
+                                        <tr>
+                                            <th>Community</th>
+                                            <th>Average Age</th>
+                                            <th>Average Income</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            Object.entries(communities).slice(0, 8).map(e => {
+                                                return <tr><td>{e[0]}</td><td>{Math.trunc(e[1]['avg_age'])}</td><td>{numeral(e[1]['avg_income']).format("$0,0")}</td></tr>
+                                            })
+                                        }
+                                    </tbody>
+                        </Table>
+                        </div>
+                    </div>}
             </div>
-        </>
+        
     )
 
 }
