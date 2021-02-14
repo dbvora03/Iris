@@ -67,7 +67,7 @@ Oh where to begin?
 * How to pipeline raw csv data to a useful dataframe
 * How K-Means works and how to use it
 * The fine art of model hyperparameter tuning
-* A lesson I learn every hackathon, never underestimate what you and your team can do.
+* A lesson we learn every hackathon, never underestimate what you and your team can do.
 
 
 ## So whats next ?
