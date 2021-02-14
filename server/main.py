@@ -1,10 +1,10 @@
-from flask import Flask, redirect, url_for, request
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, redirect, url_for, request, response
 import psycopg2
 import pandas as pd
 
 df_spending_age = pd.read_csv("./data/spending_age.csv")
 df_spending_income = pd.read_csv("./data/spending_income.csv")
+df_spending_property = pd.read_csv("./data/property_values.csv")
 census_bus_categories = {
     "Grocery": "Food purchased from stores",
     "Restaurant": "Food purchased from restaurants",
@@ -68,16 +68,36 @@ conn = psycopg2.connect(
     password=sunny03112002"
 )
 
+def get_avg_property_values(df, community_name):
+    df_non_residential = df[df("ASSESSMENT_CLASS") == "Non-residential" & df("COMM_NAME") == community_name]
+    mean_value = df_non_residential["ASSESSED_VALUE"].mean()
+    return mean_value
 
 
 
-@app.route('/', methods=['GET', 'POST'])
-def hello_world():
+@app.route('/send_data', methods=['POST']) #first post request for basic data
+def send_data():
     if request.method == 'POST':
-        request.form['']#all the fields needed are from the request.form[]
+        business_type = request.form['businessType']#all the fields needed are from the request.form[]
                         #these fields get passed to the machine learning model
                         #the model will then make a return
-        #return....
+
+        age = get_ages(df_spending_age, census_bus_categories[business_type])
+        income = get_income(df_spending_income, age_mapping[business_type])
+
+        # return....
+        return Flask.jsonify(
+            age=age,
+            income=income
+        )
+
+
+
+@app.route('/send_data_2', methods=['POST']) #second post request with resending data
+def send_data():
+    if request.method == 'POST':
+
+        
 
 
 
