@@ -36,8 +36,6 @@ const NavBar = props => {
           </Typography> 
           <Button color="inherit">Menu Item</Button>
           <Button color="inherit">Menu Item 2</Button>
-          <Typography variant="h4" style={{textDecoration: "none"}} className={classes.title}><Link to="/home">IRIS</Link></Typography>
-
         </Toolbar>
       </AppBar>
     </div>

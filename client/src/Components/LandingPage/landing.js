@@ -12,11 +12,14 @@ const LandingPage = () => {
             <div>
                 <div className="container justify-content-center" id="homecont">
                     <Card className="text-center rounded-top" id="homecard">
-                        <Card.Body>
-                            <img src={people} style={{ height: '400px' }} className="float-left" />
-                            <Card.Title><img src={logo} style={{ height: '130px' }}/></Card.Title>
-                            <Card.Text>A virtual assistant.</Card.Text>
-                            <Button href="/form" variant="primary">Continue</Button>
+                        <Card.Body className="">
+                            <div>
+                                <img src={people} style={{ height: '400px'}} className="float-left insideContent "  />
+                                <Card.Title><img src={logo} style={{ height: '130px', marginTop:"60px" }}/></Card.Title>
+                                <Card.Text>A virtual assistant.</Card.Text>
+                                <Button href="/form" variant="primary">Continue</Button>
+                            </div>
+
                         </Card.Body>
                     </Card>
                 </div>
@@ -24,7 +27,7 @@ const LandingPage = () => {
                     <div className="container ">
                         <div classname="row darow">
                             <div className="col-md-12">
-                                <div>  <h4 className="text-white">Lol, howd you find me</h4> </div>
+                                <div>  <h4 className="text-white">Lol, how'd you find me</h4> </div>
                                 <Card className="text-center">
                                     <Card.Body id="homecard">
                                         <Card.Title><h4>A reliable calculator for determining blah blah blah blah</h4></Card.Title>
