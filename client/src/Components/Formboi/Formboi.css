@@ -52,7 +52,7 @@
 }
 .register .register-form{
     padding: 10%;
-    margin-top: 10%;
+    margin-top: 15%;
 }
 .btnRegister{
     float: right;
@@ -97,4 +97,12 @@
     margin-top: 8%;
     margin-bottom: -15%;
     color: #495057;
+}
+
+.update {
+    margin-top: 0 !important;
+    margin-bottom: 18px;
+    margin-right: 25%;
+    margin-left: auto;
+
 }

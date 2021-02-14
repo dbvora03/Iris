@@ -16,7 +16,7 @@ import Formboi from './Components/Formboi/Formboi'
 import Results from './Components/Results/Results'
 import Navvy from './Components/Nav/navbar'
 import Map from './Components/Map/Map'
-
+import Confirmation from './Components/Confirmation/confirmation'
 
 const Routing = () => {
 
@@ -29,7 +29,7 @@ const Routing = () => {
       <Route exact path="/form"><Formboi/></Route>
       <Route exact path="/results"><Results/></Route>
       <Route exact path="/map"><Map/></Route>
-      <Route exact path="/confirmation"><Map/></Route>
+      <Route exact path="/confirmation"><Confirmation/></Route>
     </Switch>
   )
 }
