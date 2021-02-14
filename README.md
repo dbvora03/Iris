@@ -16,7 +16,7 @@ ENTER DEMO IMAGES
 ## How we built it 
 We split our projects into four parts: UX/UI design, frontend, backend api, and machine learning model. Through git workflow, we were able to delegate tasks and modularize our project to guarantee smooth collaboration. 
 
-Starting with the UX/UI section of the project. We used a number of tools such as Figma for prototyping, Bootstrap for design components, and Google maps API for maps. Our goal was to make a modern, clean, and user-friendly user interface. 
+Starting with the UX/UI section of the project. We used a number of tools such as Figma for prototyping, Bootstrap and Material UI for design components, and Google maps API for maps. Our goal was to make a modern, clean, and user-friendly user interface. 
 
 Moving onto the frontend, we used React to create a light and efficient framework that made it very easy to handle state, routing, and creating dynamic pages. 
 
