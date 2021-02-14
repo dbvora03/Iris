@@ -39,7 +39,7 @@ const FormBoi = () => {
 
     const PredictData = () => {
 
-        fetch("/datapredict", {
+        fetch("https://calgaryhacks-304803.wl.r.appspot.com/send_data", {
             method: "POST",
             headers: {
                 "Content-Type":"application/json"
