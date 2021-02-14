@@ -78,26 +78,26 @@ def get_comm_data():
     CENSUS_AGE_GROUPS = ['MF_0_4', 'MF_5_14', 'MF_15_19', 'MF_20_24', 'MF_25_34',
                          'MF_35_44', 'MF_45_54', 'MF_55_64', 'MF_65_74', 'MF_75']
     df_census = df_census_raw[['COMM_CODE', 'NAME', ] + CENSUS_AGE_GROUPS]
-    df_census['MF_0_29'] = df_census[CENSUS_AGE_GROUPS[0]] + df_census[CENSUS_AGE_GROUPS[1]] + \
-                           df_census[CENSUS_AGE_GROUPS[2]] + df_census[CENSUS_AGE_GROUPS[3]] + \
-                           0.5 * df_census[CENSUS_AGE_GROUPS[4]]
 
-    df_census['MF_30_39'] = 0.5 * df_census[CENSUS_AGE_GROUPS[4]] + 0.5 * df_census[CENSUS_AGE_GROUPS[5]]
-    df_census['MF_40_54'] = 0.5 * df_census[CENSUS_AGE_GROUPS[5]] + df_census[CENSUS_AGE_GROUPS[6]]
-    df_census['MF_55_64'] = df_census[CENSUS_AGE_GROUPS[7]]
-    df_census['MF_65'] = df_census[CENSUS_AGE_GROUPS[8]] + df_census[CENSUS_AGE_GROUPS[9]]
     average_ages = []
     for index, row in df_census.iterrows():
         age_dict = {
-            '0_29': row['MF_0_29'],
-            '30_39': row['MF_30_39'],
-            '40_54': row['MF_40_54'],
-            '55_64': row['MF_55_64'],
-            '65': row['MF_65']
+            '0_29': row[CENSUS_AGE_GROUPS[0]] + row[CENSUS_AGE_GROUPS[1]] + \
+                row[CENSUS_AGE_GROUPS[2]] + row[CENSUS_AGE_GROUPS[3]] + \
+                0.5 * row[CENSUS_AGE_GROUPS[4]],
+            '30_39': 0.5 * row[CENSUS_AGE_GROUPS[4]] + 0.5 * row[CENSUS_AGE_GROUPS[5]],
+            '40_54': 0.5 * row[CENSUS_AGE_GROUPS[5]] + row[CENSUS_AGE_GROUPS[6]],
+            '55_64': row[CENSUS_AGE_GROUPS[7]],
+            '65': row[CENSUS_AGE_GROUPS[8]] + row[CENSUS_AGE_GROUPS[9]]
         }
-        peak_age = max(age_dict, key=age_dict.get)
-        age_string = peak_age.split('_')
-        avg_age = (int(age_string[0]) + int(age_string[1]) if len(age_string) == 2 else 0) / len(age_string)
+        pop_sum = 0
+        row_sum = 0
+        for age_range in age_dict.keys():
+            pop_sum += age_dict[age_range]
+            age_string = age_range.split('_')
+            row_sum += ((int(age_string[0]) + int(age_string[1]) if len(age_string) == 2 else 0) / len(age_string)) *\
+                        age_dict[age_range]
+        avg_age = row_sum/pop_sum if pop_sum != 0 else None
         average_ages.append(avg_age)
 
     income_midpoints = {
@@ -151,12 +151,23 @@ def get_comm_data():
         else:
             average_incomes.append(None)
 
-    df_clean = pd.DataFrame({'community': df_census['NAME'].tolist(), 'avg_age': average_ages, 'avg_income': average_incomes})
+    df_locations = pd.read_csv('./data/Community_Points.csv')
+
+    locations = []
+
+    for comm in df_census['NAME'].tolist():
+        if comm in df_locations['NAME'].tolist():
+            locations.append([float(df_locations[(df_locations['NAME'] == comm)]['longitude']),
+                              float(df_locations[(df_locations['NAME'] == comm)]['latitude'])])
+        else:
+            locations.append(None)
+    df_clean = pd.DataFrame({'community': df_census['NAME'].tolist(), 'avg_age': average_ages,
+                             'avg_income': average_incomes, 'point': locations})
     df_clean = df_clean.dropna()
     return df_clean
 
 def create_clusters(df):
-    kmeans = KMeans(n_clusters=20).fit(df[['avg_age', 'avg_income']])
+    kmeans = KMeans(n_clusters=80).fit(df[['avg_age', 'avg_income']])
     print(kmeans.labels_)
     labels = {
         df['community'].tolist()[i]: kmeans.labels_[i]
@@ -206,7 +217,8 @@ def get_clusters():
     selected_stats = {
         community: {
             'avg_age': cleaned_comm[(cleaned_comm['community'] == community)]['avg_age'].tolist()[0],
-            'avg_income': cleaned_comm[(cleaned_comm['community'] == community)]['avg_income'].tolist()[0]
+            'avg_income': cleaned_comm[(cleaned_comm['community'] == community)]['avg_income'].tolist()[0],
+            'point': cleaned_comm[(cleaned_comm['community'] == community)]['point'].tolist()[0]
         }
         for community in selected_communities
     }
