@@ -1,6 +1,6 @@
 from flask import Flask, redirect, url_for, request, jsonify
 from sklearn.cluster import KMeans
-import psycopg2
+from flask_cors import CORS
 import pandas as pd
 import numpy as np
 
@@ -171,6 +171,7 @@ kmeans, community_clusters = create_clusters(cleaned_comm)
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/send_data', methods=['POST']) #first post request for basic data
 def send_data():
