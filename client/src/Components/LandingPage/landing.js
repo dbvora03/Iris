@@ -24,10 +24,9 @@ const LandingPage = () => {
                 </div>
                 <img src={wave} className="wave"/>
                 <div className="infopart">
-                    
                     <div className="container ">
                         <div classname="row darow">
-                            <div className="col-md-12">
+                            <div className="col-md-12 ">
                                 <div>  <h4 className="text-white">Lol, howd you find me</h4> </div>
                                 <Card className="text-center">
                                     <Card.Body id="homecard">
