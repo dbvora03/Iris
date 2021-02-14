@@ -20,7 +20,7 @@ Starting with the UX/UI section of the project. We used a number of tools such a
 
 Moving onto the frontend, we used React to create a light and efficient framework that made it very easy to handle state, routing, and creating dynamic pages. 
 
-BACK END PART
+BACK EIn the backend, we mainly used a Flask API to handle post requests from the React frontend. Additional microservices are also handled through the API, where the flask server is connected to the machine learning model. To deploy the application, we hosted it on a Google Cloud platform. ND PART
 
 MACHINE LEARNING PART
 
